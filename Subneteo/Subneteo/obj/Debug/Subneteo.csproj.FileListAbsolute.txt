@@ -7,3 +7,11 @@ c:\users\josedavid\documents\visual studio 2015\Projects\Subneteo\Subneteo\obj\D
 c:\users\josedavid\documents\visual studio 2015\Projects\Subneteo\Subneteo\obj\Debug\Subneteo.exe
 c:\users\josedavid\documents\visual studio 2015\Projects\Subneteo\Subneteo\obj\Debug\Subneteo.pdb
 C:\Users\josedavid\Documents\Visual Studio 2015\Projects\Subneteo\Subneteo\obj\Debug\Subneteo.csprojResolveAssemblyReference.cache
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\bin\Debug\Subneteo.exe.config
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.exe
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.pdb
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\bin\Debug\Subneteo.exe
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\bin\Debug\Subneteo.pdb
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.Form1.resources
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.Properties.Resources.resources
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.csproj.GenerateResource.Cache
