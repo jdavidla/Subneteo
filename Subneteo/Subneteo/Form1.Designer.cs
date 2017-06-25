@@ -43,8 +43,8 @@
             this.oct2Input = new System.Windows.Forms.NumericUpDown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioIP = new System.Windows.Forms.RadioButton();
             this.radioSlash = new System.Windows.Forms.RadioButton();
+            this.radioIP = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -116,7 +116,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 74);
+            this.label3.Location = new System.Drawing.Point(18, 214);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 3;
@@ -128,15 +128,15 @@
             this.requiredBox.Items.AddRange(new object[] {
             "Subredes",
             "Host por subred"});
-            this.requiredBox.Location = new System.Drawing.Point(171, 71);
+            this.requiredBox.Location = new System.Drawing.Point(165, 211);
             this.requiredBox.Name = "requiredBox";
-            this.requiredBox.Size = new System.Drawing.Size(121, 21);
+            this.requiredBox.Size = new System.Drawing.Size(101, 21);
             this.requiredBox.TabIndex = 4;
             this.requiredBox.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // requiredNumberInput
             // 
-            this.requiredNumberInput.Location = new System.Drawing.Point(80, 72);
+            this.requiredNumberInput.Location = new System.Drawing.Point(74, 212);
             this.requiredNumberInput.Name = "requiredNumberInput";
             this.requiredNumberInput.Size = new System.Drawing.Size(85, 20);
             this.requiredNumberInput.TabIndex = 6;
@@ -171,7 +171,7 @@
             // 
             // calcButton
             // 
-            this.calcButton.Location = new System.Drawing.Point(211, 167);
+            this.calcButton.Location = new System.Drawing.Point(279, 209);
             this.calcButton.Name = "calcButton";
             this.calcButton.Size = new System.Drawing.Size(75, 23);
             this.calcButton.TabIndex = 19;
@@ -249,18 +249,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mascara Inicial de Subred";
             // 
-            // radioIP
-            // 
-            this.radioIP.AutoSize = true;
-            this.radioIP.Location = new System.Drawing.Point(18, 19);
-            this.radioIP.Name = "radioIP";
-            this.radioIP.Size = new System.Drawing.Size(35, 17);
-            this.radioIP.TabIndex = 32;
-            this.radioIP.TabStop = true;
-            this.radioIP.Text = "IP";
-            this.radioIP.UseVisualStyleBackColor = true;
-            this.radioIP.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
             // radioSlash
             // 
             this.radioSlash.AutoSize = true;
@@ -273,10 +261,22 @@
             this.radioSlash.UseVisualStyleBackColor = true;
             this.radioSlash.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
+            // radioIP
+            // 
+            this.radioIP.AutoSize = true;
+            this.radioIP.Location = new System.Drawing.Point(18, 19);
+            this.radioIP.Name = "radioIP";
+            this.radioIP.Size = new System.Drawing.Size(35, 17);
+            this.radioIP.TabIndex = 32;
+            this.radioIP.TabStop = true;
+            this.radioIP.Text = "IP";
+            this.radioIP.UseVisualStyleBackColor = true;
+            this.radioIP.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(129, 217);
+            this.label1.Location = new System.Drawing.Point(129, 85);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(10, 13);
             this.label1.TabIndex = 35;
@@ -285,7 +285,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(276, 217);
+            this.label4.Location = new System.Drawing.Point(276, 85);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(10, 13);
             this.label4.TabIndex = 34;
@@ -294,7 +294,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(204, 217);
+            this.label8.Location = new System.Drawing.Point(204, 85);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(10, 13);
             this.label8.TabIndex = 33;
@@ -303,7 +303,7 @@
             // MascIPLabel
             // 
             this.MascIPLabel.AutoSize = true;
-            this.MascIPLabel.Location = new System.Drawing.Point(14, 210);
+            this.MascIPLabel.Location = new System.Drawing.Point(14, 78);
             this.MascIPLabel.Name = "MascIPLabel";
             this.MascIPLabel.Size = new System.Drawing.Size(49, 13);
             this.MascIPLabel.TabIndex = 32;
@@ -330,7 +330,7 @@
             "252",
             "254",
             "255"});
-            this.initMascOct1Box.Location = new System.Drawing.Point(68, 209);
+            this.initMascOct1Box.Location = new System.Drawing.Point(68, 77);
             this.initMascOct1Box.Name = "initMascOct1Box";
             this.initMascOct1Box.Size = new System.Drawing.Size(55, 21);
             this.initMascOct1Box.TabIndex = 41;
@@ -340,7 +340,7 @@
             // 
             this.initMascOct4Box.Enabled = false;
             this.initMascOct4Box.FormattingEnabled = true;
-            this.initMascOct4Box.Location = new System.Drawing.Point(292, 210);
+            this.initMascOct4Box.Location = new System.Drawing.Point(292, 75);
             this.initMascOct4Box.Name = "initMascOct4Box";
             this.initMascOct4Box.Size = new System.Drawing.Size(55, 21);
             this.initMascOct4Box.TabIndex = 42;
@@ -349,7 +349,7 @@
             // 
             this.initMascOct3Box.Enabled = false;
             this.initMascOct3Box.FormattingEnabled = true;
-            this.initMascOct3Box.Location = new System.Drawing.Point(220, 209);
+            this.initMascOct3Box.Location = new System.Drawing.Point(220, 75);
             this.initMascOct3Box.Name = "initMascOct3Box";
             this.initMascOct3Box.Size = new System.Drawing.Size(55, 21);
             this.initMascOct3Box.TabIndex = 43;
@@ -359,7 +359,7 @@
             // 
             this.initMascOct2Box.Enabled = false;
             this.initMascOct2Box.FormattingEnabled = true;
-            this.initMascOct2Box.Location = new System.Drawing.Point(145, 210);
+            this.initMascOct2Box.Location = new System.Drawing.Point(143, 75);
             this.initMascOct2Box.Name = "initMascOct2Box";
             this.initMascOct2Box.Size = new System.Drawing.Size(55, 21);
             this.initMascOct2Box.TabIndex = 44;
@@ -395,7 +395,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.slashBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Calculadore Subneteo";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.requiredNumberInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oct1Input)).EndInit();

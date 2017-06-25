@@ -15,3 +15,4 @@ C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\bin\Debug\S
 C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.Form1.resources
 C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.Properties.Resources.resources
 C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.csproj.GenerateResource.Cache
+C:\Users\josedavid\Documents\repositorios\Subneteo\Subneteo\Subneteo\obj\Debug\Subneteo.csprojResolveAssemblyReference.cache

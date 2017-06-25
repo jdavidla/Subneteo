@@ -26,10 +26,61 @@ namespace Subneteo
         private int initMascOct4;
         private bool noCheck;
         int[] validMaskValues = {0, 128, 192, 224, 240, 248, 252, 254, 255};
+        private IP IP;
+        private IP InitialMask;
+        private IP SubnetMask;
+
         public Form1()
         {
             InitializeComponent();
             MyInit();
+        }
+
+
+        void calcHost()
+        {
+            int hostBits = hostbits(requiredNumber);
+            SubnetMask = new IP(1, hostBits);
+        }
+
+        void calcSubRedes()
+        {
+
+        }
+
+        public int hostbits(int hostRequired)
+        {
+            int hostBits = 0;
+            for (int i = 1; i < 100000000; i++)
+            {
+                int maxHost = (int)Math.Pow(2, i);
+                if (maxHost > hostRequired)
+                {
+                    hostBits = i;
+                    break;
+                }
+            }
+            return hostBits;
+        }
+
+        private void calcButton_Click(object sender, EventArgs e)
+        {
+            if (validateData())
+            {
+                Console.WriteLine("ahora si viene lo chido");
+                IP = new IP(oct1, oct2, oct3, oct4);
+                InitialMask = new IP(initMascOct1, initMascOct2, initMascOct3, initMascOct4);
+                if (requiredThing == 1)
+                {
+                    calcHost();
+                }
+
+                if (requiredThing == 0)
+                {
+                    calcSubRedes();
+                }
+            }
+
         }
 
         void MyInit()
@@ -222,14 +273,7 @@ namespace Subneteo
 
         }
 
-        private void calcButton_Click(object sender, EventArgs e)
-        {
-            if (validateData())
-            {
-                Console.WriteLine("ahora si viene lo chido");
-            }
-            
-        }
+        
 
         private void claseBox_SelectedIndexChanged(object sender, EventArgs e)
         {
