@@ -48,7 +48,67 @@ namespace Subneteo
         private void buildRedIP()
         {
             int tempBits = bits;
+            if (subnetMask.oct1 < 255 && tempBits > 0)
+            {
+                char[] charOct1temp = subnetMask.oct1Binary.ToCharArray();
+                for (int i = 0; i < charOct1temp.Length; i++)
+                {
+                    if (charOct1temp[i] == '0')
+                    {
+                        charOct1temp[i] = '1';
+                        tempBits = tempBits - 1;
+                    }
+                    if (tempBits == 0)
+                    {
+                        oct2 = 0;
+                        oct2Binary = "00000000";
+                        oct3 = 0;
+                        oct3Binary = "00000000";
+                        oct4 = 0;
+                        oct4Binary = "00000000";
+                        oct1Binary = charArrayToString(charOct1temp);
+                        return;
+                    }
+                }
+                if (tempBits > 0)
+                {
+                    char[] charOct2temp = subnetMask.oct2Binary.ToCharArray();
+                    for (int i = 0; i < charOct2temp.Length; i++)
+                    {
+                        if (charOct2temp[i] == '0')
+                        {
+                            charOct2temp[i] = '1';
+                            tempBits = tempBits - 1;
+                        }
+                        if (tempBits == 0)
+                        {
+                            oct1 = 255;
+                            oct1Binary = "11111111";
+                            oct3 = 0;
+                            oct3Binary = "00000000";
+                            oct4 = 0;
+                            oct4Binary = "00000000";
+                            oct2Binary = charArrayToString(charOct2temp);
+                            return;
+                        }
+                    }
+                }
+            }
 
+            if ()
+            {
+
+            }
+        }
+
+        public string charArrayToString(char[] array)
+        {
+            string joined = "";
+            for (int i = 0; i < array.Length; i++)
+            {
+                joined = array[i] + "";
+            }
+            return joined;
         }
 
         private void buildSubnetIP()
