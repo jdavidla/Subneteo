@@ -45,16 +45,18 @@ namespace Subneteo
 
         void calcSubRedes()
         {
-
+            int reds = redBits(requiredNumber);
+            SubnetMask = new IP(SubnetMask, reds);
         }
 
+        //saca los bits de host que se ocuparan segun el # de host necesarios
         public int hostbits(int hostRequired)
         {
             int hostBits = 0;
             for (int i = 1; i < 100000000; i++)
             {
                 int maxHost = (int)Math.Pow(2, i);
-                if (maxHost > hostRequired)
+                if (maxHost - 2 >= hostRequired)
                 {
                     hostBits = i;
                     break;
@@ -63,13 +65,136 @@ namespace Subneteo
             return hostBits;
         }
 
+        //devuelve numero de bits prestados que se ocuparan para la mascara de subred para redes
+        public int redBits(int redsRequired)
+        {
+            int redBits = 0;
+            for (int i = 1; i < 100000000; i++)
+            {
+                int maxRed = (int)Math.Pow(2, i);
+                if (maxRed > redsRequired)
+                {
+                    redBits = i;
+                    break;
+                }
+            }
+            return redBits;
+        }
+
+        void buildInitMask()
+        {
+            if (radioIP.Checked)
+            {
+                InitialMask = new IP(initMascOct1, initMascOct2, initMascOct3, initMascOct4);
+            }
+
+            if (radioSlash.Checked)
+            {
+                buildInitMaskSlash();
+            }
+        }
+
+        void buildInitMaskSlash()
+        {
+            string binaryOctTemp = "";
+            if (maskSlash > 0 && maskSlash <= 8)
+            {
+                initMascOct4 = 0;
+                initMascOct3 = 0;
+                initMascOct2 = 0;
+                for (int i = 0; i < maskSlash; i++)
+                {
+                    binaryOctTemp += "1";
+                }
+                string oct1 = fillBinaryRigth(binaryOctTemp, "0");
+                initMascOct1 = Convert.ToInt32(oct1, 2);
+            }
+
+            if (maskSlash > 8 && maskSlash <= 16)
+            {
+                initMascOct1 = 255;
+                initMascOct4 = 0;
+                initMascOct3 = 0;
+
+                if (maskSlash == 16)
+                {
+                    binaryOctTemp = "11111111";
+                } else
+                {
+                    for (int i = 0; i < maskSlash % 8; i++)
+                    {
+                        binaryOctTemp += "1";
+                    }
+                }
+                
+                string oct2 = fillBinaryRigth(binaryOctTemp, "0");
+                initMascOct2 = Convert.ToInt32(oct2, 2);
+            }
+
+            if (maskSlash > 16 && maskSlash <= 24)
+            {
+                initMascOct1 = 255;
+                initMascOct4 = 0;
+                initMascOct2 = 255;
+
+                if (maskSlash == 24)
+                {
+                    binaryOctTemp = "11111111";
+                }
+                else
+                {
+                    for (int i = 0; i < maskSlash % 8; i++)
+                    {
+                        binaryOctTemp += "1";
+                    }
+                }
+
+
+                string oct3 = fillBinaryRigth(binaryOctTemp, "0");
+                initMascOct3 = Convert.ToInt32(oct3, 2);
+            }
+
+            if (maskSlash > 24 && maskSlash <= 30)
+            {
+                initMascOct1 = 255;
+                initMascOct2 = 255;
+                initMascOct3 = 255;
+
+                for (int i = 0; i < maskSlash % 8; i++)
+                {
+                    binaryOctTemp += "1";
+                }
+
+                string oct4 = fillBinaryRigth(binaryOctTemp, "0");
+                initMascOct4 = Convert.ToInt32(oct4, 2);
+            }
+            InitialMask = new IP(initMascOct1, initMascOct2, initMascOct3, initMascOct4);
+        }
+
+        private string fillBinaryRigth(string n, string fillWith)
+        {
+            string filled = "";
+            int lon = n.Length;
+            int diff = 8 - lon;
+            for (int i = 0; i < diff; i++)
+            {
+                filled += fillWith;
+            }
+            filled = n + filled;
+            return filled;
+        }
+
         private void calcButton_Click(object sender, EventArgs e)
         {
+            IP = null;
+            InitialMask = null;
+            SubnetMask = null;
             if (validateData())
             {
                 Console.WriteLine("ahora si viene lo chido");
                 IP = new IP(oct1, oct2, oct3, oct4);
-                InitialMask = new IP(initMascOct1, initMascOct2, initMascOct3, initMascOct4);
+                //contruir mascara inicial
+                buildInitMask();
                 if (requiredThing == 1)
                 {
                     calcHost();
@@ -80,18 +205,37 @@ namespace Subneteo
                     calcSubRedes();
                 }
             }
+            
+            if (IP != null)
+            {
+                Console.WriteLine("IP");
+                Console.WriteLine(IP.toString());
+            }
 
+            if (InitialMask != null)
+            {
+                Console.WriteLine("Mascara Inicial");
+                Console.WriteLine(InitialMask.toString());
+            }
+            
+            if (SubnetMask != null)
+            {
+                Console.WriteLine("Mascara Subred");
+                Console.WriteLine(SubnetMask.toString());
+            }
+            
         }
 
         void MyInit()
         {
-            initMascOct1Box.Visible = false;
-            initMascOct2Box.Visible = false;
-            initMascOct3Box.Visible = false;
-            initMascOct4Box.Visible = false;
-            MascIPLabel.Visible = false;
+        //    initMascOct1Box.Visible = false;
+      //      initMascOct2Box.Visible = false;
+         //   initMascOct3Box.Visible = false;
+           // initMascOct4Box.Visible = false;
+           // MascIPLabel.Visible = false;
             slashLabel.Visible = false;
             slashBox.Visible = false;
+            requiredBox.SelectedIndex = 0;
         }
 
         void hideSlash()
@@ -406,6 +550,9 @@ namespace Subneteo
             initMascOct4Box.Enabled = true;
         }
 
+        private void requiredNumberInput_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }
