@@ -46,7 +46,8 @@ namespace Subneteo
         void calcSubRedes()
         {
             int reds = redBits(requiredNumber);
-            SubnetMask = new IP(SubnetMask, reds);
+            SubnetMask = new IP(InitialMask.Oct1Binary, InitialMask.Oct2Binary, InitialMask.Oct3Binary,
+                InitialMask.Oct4Binary, reds);
         }
 
         //saca los bits de host que se ocuparan segun el # de host necesarios
@@ -204,6 +205,8 @@ namespace Subneteo
                 {
                     calcSubRedes();
                 }
+                //ya tengo todas las ip ahora los rangos xd
+
             }
             
             if (IP != null)

@@ -54,7 +54,6 @@
             this.initMascOct4Box = new System.Windows.Forms.ComboBox();
             this.initMascOct3Box = new System.Windows.Forms.ComboBox();
             this.initMascOct2Box = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.requiredNumberInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oct1Input)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oct4Input)).BeginInit();
@@ -373,20 +372,11 @@
             this.initMascOct2Box.TabIndex = 44;
             this.initMascOct2Box.SelectedIndexChanged += new System.EventHandler(this.initMascOct2Box_SelectedIndexChanged);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(0, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 45;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 339);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.initMascOct2Box);
             this.Controls.Add(this.initMascOct3Box);
             this.Controls.Add(this.initMascOct4Box);
@@ -455,7 +445,6 @@
         private System.Windows.Forms.ComboBox initMascOct4Box;
         private System.Windows.Forms.ComboBox initMascOct3Box;
         private System.Windows.Forms.ComboBox initMascOct2Box;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

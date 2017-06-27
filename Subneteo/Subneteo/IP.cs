@@ -19,8 +19,12 @@ namespace Subneteo
         private int type;
         private int bits;
         private int affectedOct;
-        private IP subnetMask;
         private int reds;
+
+        private string initMaskOct1Binary;
+        private string initMaskOct2Binary;
+        private string initMaskOct3Binary;
+        private string initMaskOct4Binary;
 
         public IP(int oct1, int oct2, int oct3, int oct4)
         {
@@ -38,67 +42,83 @@ namespace Subneteo
             buildSubnetIP();
         }
 
-        public IP(IP subnetMask, int reds)
+        public IP(string initMaskOct1Binary, string initMaskOct2Binary, string initMaskOct3Binary,
+            string initMaskOct4Binary, int reds)
         {
-            this.subnetMask = subnetMask;
+            
             this.bits = reds;
+            this.initMaskOct1Binary = initMaskOct1Binary;
+            this.initMaskOct2Binary = initMaskOct2Binary;
+            this.initMaskOct3Binary = initMaskOct3Binary;
+            this.initMaskOct4Binary = initMaskOct4Binary;
             buildRedIP();
         }
 
         private void buildRedIP()
         {
-            int tempBits = bits;
-            if (subnetMask.oct1 < 255 && tempBits > 0)
+            oct1Binary = "";
+            oct2Binary = "";
+            oct3Binary = "";
+            oct4Binary = "";
+
+            int affectedBit = 0;
+            int temp = bits;
+            string initMaskJoinedIPTemp = initMaskOct1Binary + initMaskOct2Binary + 
+                initMaskOct3Binary + initMaskOct4Binary;
+            char[] initMaskJoinedIP = initMaskJoinedIPTemp.ToCharArray();
+            for (int i = 0; i < initMaskJoinedIP.Length; i++)
             {
-                char[] charOct1temp = subnetMask.oct1Binary.ToCharArray();
-                for (int i = 0; i < charOct1temp.Length; i++)
+                if (initMaskJoinedIP[i] == '0')
                 {
-                    if (charOct1temp[i] == '0')
-                    {
-                        charOct1temp[i] = '1';
-                        tempBits = tempBits - 1;
-                    }
-                    if (tempBits == 0)
-                    {
-                        oct2 = 0;
-                        oct2Binary = "00000000";
-                        oct3 = 0;
-                        oct3Binary = "00000000";
-                        oct4 = 0;
-                        oct4Binary = "00000000";
-                        oct1Binary = charArrayToString(charOct1temp);
-                        return;
-                    }
+                    initMaskJoinedIP[i] = '1';
+                    temp = temp - 1;
                 }
-                if (tempBits > 0)
+                if (temp == 0)
                 {
-                    char[] charOct2temp = subnetMask.oct2Binary.ToCharArray();
-                    for (int i = 0; i < charOct2temp.Length; i++)
-                    {
-                        if (charOct2temp[i] == '0')
-                        {
-                            charOct2temp[i] = '1';
-                            tempBits = tempBits - 1;
-                        }
-                        if (tempBits == 0)
-                        {
-                            oct1 = 255;
-                            oct1Binary = "11111111";
-                            oct3 = 0;
-                            oct3Binary = "00000000";
-                            oct4 = 0;
-                            oct4Binary = "00000000";
-                            oct2Binary = charArrayToString(charOct2temp);
-                            return;
-                        }
-                    }
+                    affectedBit = i;
+                    break;
+                }
+            }
+            for (int e = 0; e < initMaskJoinedIP.Length; e++)
+            {
+                if (e >= 0 && e <= 7)
+                {
+                    oct1Binary += initMaskJoinedIP[e] + "";
+                }
+                if (e >= 8 && e <= 15)
+                {
+                    oct2Binary += initMaskJoinedIP[e] + "";
+                }
+                if (e >= 16 && e <= 23)
+                {
+                    oct3Binary += initMaskJoinedIP[e] + "";
+                }
+                if (e >= 24 && e <= 31)
+                {
+                    oct4Binary += initMaskJoinedIP[e] + "";
                 }
             }
 
-            if ()
+            if (affectedBit >= 0 && affectedBit <= 7)
             {
-
+                affectedOct = 1;
             }
+            if (affectedBit >= 8 && affectedBit <= 15)
+            {
+                affectedOct = 2;
+            }
+            if (affectedBit >= 16 && affectedBit <= 23)
+            {
+                affectedOct = 3;
+            }
+            if (affectedBit >= 24 && affectedBit <= 31)
+            {
+                affectedOct = 4;
+            }
+            oct1 = Convert.ToInt32(oct1Binary, 2);
+            oct2 = Convert.ToInt32(oct2Binary, 2);
+            oct3 = Convert.ToInt32(oct3Binary, 2);
+            oct4 = Convert.ToInt32(oct4Binary, 2);
         }
 
         public string charArrayToString(char[] array)
@@ -210,7 +230,7 @@ namespace Subneteo
             }
         }
 
-        
+
 
         //agarra los octs en decimal y pasa a binario rellenando 0
         private void convertAlltoBinary()
@@ -388,19 +408,7 @@ namespace Subneteo
                 affectedOct = value;
             }
         }
-
-        public IP SubnetMask
-        {
-            get
-            {
-                return subnetMask;
-            }
-
-            set
-            {
-                subnetMask = value;
-            }
-        }
+        
 
         public int Reds
         {
@@ -414,6 +422,6 @@ namespace Subneteo
                 reds = value;
             }
         }
-        
+
     }
 }
