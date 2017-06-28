@@ -95,6 +95,68 @@ namespace Subneteo
             }
         }
 
+        void calcRangos()
+        {
+            int itNumber = SubnetMask.IterationNumber;
+            int temp = itNumber;
+            int iterations = 255 / itNumber;
+            if (SubnetMask.AffectedOct == 1)
+            {
+
+            }
+
+            if (SubnetMask.AffectedOct == 2)
+            {
+                table.Rows.Add(IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + IP.Oct4,
+                                IP.Oct1 + "." + 1 + "." + IP.Oct3 + "." + 1,
+                                IP.Oct1 + "." + (itNumber - 2) + "." + IP.Oct3 + "." + 254,
+                                IP.Oct1 + "." + (itNumber - 1) + "." + IP.Oct3 + "." + 255);
+                for (int i = 0; i < iterations; i++)
+                {
+                    table.Rows.Add(IP.Oct1 + "." + itNumber + "." + IP.Oct3 + "." + IP.Oct4,
+                                IP.Oct1 + "." + (itNumber + 1) + "." + IP.Oct3 + "." + 1,
+                                IP.Oct1 + "." + ((itNumber + temp) - 2) + "." + IP.Oct3 + "." + 254,
+                                IP.Oct1 + "." + ((itNumber + temp) - 1) + "." + IP.Oct3 + "." + 255);
+                    itNumber = itNumber + temp;
+
+                }
+            }
+
+            if (SubnetMask.AffectedOct == 3)
+            {
+                table.Rows.Add(IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + IP.Oct4,
+                                IP.Oct1 + "." + IP.Oct2 + "." + 1 + "." + 1,
+                                IP.Oct1 + "." + IP.Oct2 + "." + (itNumber - 2) + "." + 254,
+                                IP.Oct1 + "." + IP.Oct2 + "." + (itNumber - 1) + "." + 255);
+                for (int i = 0; i < iterations - 1; i++)
+                {
+                    table.Rows.Add(IP.Oct1 + "." + IP.Oct2 + "." + itNumber + "." + IP.Oct4,
+                                IP.Oct1 + "." + IP.Oct2 + "." + (itNumber + 1)  + "." + 1,
+                                IP.Oct1 + "." + IP.Oct2 + "." + ((itNumber + temp) - 2) + "." + 254,
+                                IP.Oct1 + "." + IP.Oct2 + "." + ((itNumber + temp) - 1) + "." + 255);
+                    itNumber = itNumber + temp;
+                    
+                }
+            }
+
+            if (SubnetMask.AffectedOct == 4)
+            {
+                table.Rows.Add(IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + IP.Oct4,
+                                IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + 1,
+                                IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + (itNumber - 2),
+                                IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + (itNumber - 1));
+                for (int i = 0; i < iterations; i++)
+                {
+                    table.Rows.Add(IP.Oct1 + "." + IP.Oct3 + "." + IP.Oct3 + "." + itNumber,
+                                IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + (itNumber + 1),
+                                IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + ((itNumber + temp) - 2),
+                                IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + ((itNumber + temp) - 1));
+                    itNumber = itNumber + temp;
+
+                }
+            }
+        }
+
         void buildInitMaskSlash()
         {
             string binaryOctTemp = "";
@@ -187,6 +249,7 @@ namespace Subneteo
 
         private void calcButton_Click(object sender, EventArgs e)
         {
+            table.Rows.Clear();
             IP = null;
             InitialMask = null;
             SubnetMask = null;
@@ -205,6 +268,7 @@ namespace Subneteo
                 {
                     calcSubRedes();
                 }
+                
                 //ya tengo todas las ip ahora los rangos xd
 
             }
@@ -220,24 +284,46 @@ namespace Subneteo
                 Console.WriteLine("Mascara Inicial");
                 Console.WriteLine(InitialMask.toString());
             }
-            
+
+            SubnetMask.setIterationBits();
             if (SubnetMask != null)
             {
                 Console.WriteLine("Mascara Subred");
                 Console.WriteLine(SubnetMask.toString());
             }
-            
+
+            calcRangos();
+            maskLabel.Visible = true;
+            octBinarioLabel.Text = SubnetMask.Oct1Binary + "." + SubnetMask.Oct2Binary + "." +
+                                SubnetMask.Oct3Binary + "." + SubnetMask.Oct4Binary;
+            octBinarioLabel.Visible = true;
+
+            octDecimalLabel.Text = SubnetMask.Oct1 + "." + SubnetMask.Oct2 + "." + SubnetMask.Oct3 + "." +
+                                    SubnetMask.Oct4;
+            octDecimalLabel.Visible = true;
+
+            afectadoLabel.Text = "Octeto Afectado: " + SubnetMask.AffectedOct;
+            afectadoLabel.Visible = true;
+
+            prestadosLabel.Text = "Bits prestados: " + SubnetMask.Bits;
+            prestadosLabel.Visible = true;
+
+            iterationsLabel.Text = "Iteraciones de " + SubnetMask.IterationNumber + 
+                                    " en " + SubnetMask.IterationNumber;
+            iterationsLabel.Visible = true;
+
         }
 
         void MyInit()
         {
-        //    initMascOct1Box.Visible = false;
-      //      initMascOct2Box.Visible = false;
-         //   initMascOct3Box.Visible = false;
-           // initMascOct4Box.Visible = false;
-           // MascIPLabel.Visible = false;
             slashLabel.Visible = false;
             slashBox.Visible = false;
+            maskLabel.Visible = false;
+            octBinarioLabel.Visible = false;
+            octDecimalLabel.Visible = false;
+            afectadoLabel.Visible = false;
+            prestadosLabel.Visible = false;
+            iterationsLabel.Visible = false;
             requiredBox.SelectedIndex = 0;
         }
 
@@ -554,6 +640,11 @@ namespace Subneteo
         }
 
         private void requiredNumberInput_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
         {
 
         }

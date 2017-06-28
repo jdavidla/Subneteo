@@ -20,6 +20,8 @@ namespace Subneteo
         private int bits;
         private int affectedOct;
         private int reds;
+        private int iterationBits;
+        private int iterationNumber;
 
         private string initMaskOct1Binary;
         private string initMaskOct2Binary;
@@ -52,6 +54,41 @@ namespace Subneteo
             this.initMaskOct3Binary = initMaskOct3Binary;
             this.initMaskOct4Binary = initMaskOct4Binary;
             buildRedIP();
+        }
+
+        public void setIterationBits()
+        {
+            if (affectedOct == 1)
+            {
+                setIterationBits(oct1Binary);
+            }
+            if (affectedOct == 2)
+            {
+                setIterationBits(oct2Binary);
+            }
+            if (affectedOct == 3)
+            {
+                setIterationBits(oct3Binary);
+            }
+            if (affectedOct == 4)
+            {
+                setIterationBits(oct4Binary);
+            }
+        }
+
+        public void setIterationBits(string octBinary)
+        {
+            int count = 0;
+            char[] array = octBinary.ToArray();
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == '0')
+                {
+                    count += 1;
+                }
+            }
+            iterationBits = count;
+            iterationNumber = (int)Math.Pow(2, iterationBits);
         }
 
         private void buildRedIP()
@@ -262,8 +299,9 @@ namespace Subneteo
         public string toString()
         {
             return "oct1: " + oct1 + "oct2: " + oct2 + "oct3: " + oct3 + "oct4: " + oct4 + "\n" +
-                "IBinario: " + oct1Binary + "." + oct2Binary + "." + oct3Binary + "." + oct4Binary + "." + "\n" +
-                "tipo: " + type + "bits: " + bits + "afectado " + affectedOct;
+                "IBinario: " + oct1Binary + "." + oct2Binary + "." + oct3Binary + "." + oct4Binary + "\n" +
+                "tipo: " + type + "bits: " + bits + "afectado " + affectedOct + "\n" +
+                "Iteration Bits: " + iterationBits + " Iteration number: " + iterationNumber;
         }
 
         public int Oct1
@@ -423,5 +461,30 @@ namespace Subneteo
             }
         }
 
+        public int IterationBits
+        {
+            get
+            {
+                return iterationBits;
+            }
+
+            set
+            {
+                this.iterationBits = value;
+            }
+        }
+
+        public int IterationNumber
+        {
+            get
+            {
+                return iterationNumber;
+            }
+
+            set
+            {
+                iterationNumber = value;
+            }
+        }
     }
 }
