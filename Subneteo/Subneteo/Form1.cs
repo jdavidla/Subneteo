@@ -99,7 +99,7 @@ namespace Subneteo
         {
             int itNumber = SubnetMask.IterationNumber;
             int temp = itNumber;
-            int iterations = 255 / itNumber;
+            int iterations = 256 / itNumber;
             if (SubnetMask.AffectedOct == 1)
             {
 
@@ -111,7 +111,7 @@ namespace Subneteo
                                 IP.Oct1 + "." + 1 + "." + IP.Oct3 + "." + 1,
                                 IP.Oct1 + "." + (itNumber - 2) + "." + IP.Oct3 + "." + 254,
                                 IP.Oct1 + "." + (itNumber - 1) + "." + IP.Oct3 + "." + 255);
-                for (int i = 0; i < iterations; i++)
+                for (int i = 0; i < iterations - 1; i++)
                 {
                     table.Rows.Add(IP.Oct1 + "." + itNumber + "." + IP.Oct3 + "." + IP.Oct4,
                                 IP.Oct1 + "." + (itNumber + 1) + "." + IP.Oct3 + "." + 1,
@@ -145,7 +145,7 @@ namespace Subneteo
                                 IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + 1,
                                 IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + (itNumber - 2),
                                 IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + (itNumber - 1));
-                for (int i = 0; i < iterations; i++)
+                for (int i = 0; i < iterations - 1; i++)
                 {
                     table.Rows.Add(IP.Oct1 + "." + IP.Oct3 + "." + IP.Oct3 + "." + itNumber,
                                 IP.Oct1 + "." + IP.Oct2 + "." + IP.Oct3 + "." + (itNumber + 1),
