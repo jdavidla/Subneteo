@@ -56,6 +56,56 @@ namespace Subneteo
             buildRedIP();
         }
 
+        public int unoCountAff()
+        {
+            int count = 0;
+            char[] temp;
+            if (affectedOct == 1)
+            {
+                temp = oct1Binary.ToArray();
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i] == '1')
+                    {
+                        count = count + 1;
+                    }
+                }
+            }
+            if (affectedOct == 2)
+            {
+                temp = oct2Binary.ToArray();
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i] == '1')
+                    {
+                        count = count + 1;
+                    }
+                }
+            }
+            if (affectedOct == 3)
+            {
+                temp = oct3Binary.ToArray();
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i] == '1')
+                    {
+                        count = count + 1;
+                    }
+                }
+            }
+            if (affectedOct == 4)
+            {
+                temp = oct4Binary.ToArray();
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i] == '1')
+                    {
+                        count = count + 1;
+                    }
+                }
+            }
+            return count;
+        }
         public void setIterationBits()
         {
             if (affectedOct == 1)
@@ -107,8 +157,9 @@ namespace Subneteo
             {
                 if (initMaskJoinedIP[i] == '0')
                 {
-                    initMaskJoinedIP[i] = '1';
                     temp = temp - 1;
+                    initMaskJoinedIP[i] = '1';
+                    
                 }
                 if (temp == 0)
                 {

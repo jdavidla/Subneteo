@@ -42,6 +42,7 @@
             this.oct3Input = new System.Windows.Forms.NumericUpDown();
             this.oct2Input = new System.Windows.Forms.NumericUpDown();
             this.table = new System.Windows.Forms.DataGridView();
+            this.ColumnN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.redDir = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +66,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.afectadoLabel = new System.Windows.Forms.Label();
             this.iterationsLabel = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.requiredNumberInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oct1Input)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oct4Input)).BeginInit();
@@ -72,19 +74,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.oct2Input)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // slashBox
             // 
             this.slashBox.FormattingEnabled = true;
             this.slashBox.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
             "8",
             "9",
             "10",
@@ -111,8 +107,7 @@
             this.slashBox.Location = new System.Drawing.Point(233, 75);
             this.slashBox.Name = "slashBox";
             this.slashBox.Size = new System.Drawing.Size(53, 21);
-            this.slashBox.TabIndex = 1;
-            this.slashBox.SelectedIndexChanged += new System.EventHandler(this.claseBox_SelectedIndexChanged);
+            this.slashBox.TabIndex = 5;
             // 
             // label2
             // 
@@ -122,7 +117,6 @@
             this.label2.Size = new System.Drawing.Size(20, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "IP:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -142,8 +136,7 @@
             this.requiredBox.Location = new System.Drawing.Point(155, 201);
             this.requiredBox.Name = "requiredBox";
             this.requiredBox.Size = new System.Drawing.Size(101, 21);
-            this.requiredBox.TabIndex = 4;
-            this.requiredBox.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.requiredBox.TabIndex = 11;
             // 
             // requiredNumberInput
             // 
@@ -155,8 +148,7 @@
             0});
             this.requiredNumberInput.Name = "requiredNumberInput";
             this.requiredNumberInput.Size = new System.Drawing.Size(85, 20);
-            this.requiredNumberInput.TabIndex = 6;
-            this.requiredNumberInput.ValueChanged += new System.EventHandler(this.requiredNumberInput_ValueChanged);
+            this.requiredNumberInput.TabIndex = 10;
             // 
             // label5
             // 
@@ -175,7 +167,6 @@
             this.label6.Size = new System.Drawing.Size(10, 13);
             this.label6.TabIndex = 13;
             this.label6.Text = ".";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -206,8 +197,7 @@
             0});
             this.oct1Input.Name = "oct1Input";
             this.oct1Input.Size = new System.Drawing.Size(53, 20);
-            this.oct1Input.TabIndex = 26;
-            this.oct1Input.ValueChanged += new System.EventHandler(this.oct1Input_ValueChanged);
+            this.oct1Input.TabIndex = 1;
             // 
             // oct4Input
             // 
@@ -219,7 +209,7 @@
             0});
             this.oct4Input.Name = "oct4Input";
             this.oct4Input.Size = new System.Drawing.Size(53, 20);
-            this.oct4Input.TabIndex = 27;
+            this.oct4Input.TabIndex = 4;
             // 
             // oct3Input
             // 
@@ -231,8 +221,7 @@
             0});
             this.oct3Input.Name = "oct3Input";
             this.oct3Input.Size = new System.Drawing.Size(53, 20);
-            this.oct3Input.TabIndex = 28;
-            this.oct3Input.ValueChanged += new System.EventHandler(this.oct3Input_ValueChanged);
+            this.oct3Input.TabIndex = 3;
             // 
             // oct2Input
             // 
@@ -244,21 +233,28 @@
             0});
             this.oct2Input.Name = "oct2Input";
             this.oct2Input.Size = new System.Drawing.Size(53, 20);
-            this.oct2Input.TabIndex = 29;
-            this.oct2Input.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
+            this.oct2Input.TabIndex = 2;
             // 
             // table
             // 
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnN,
             this.redDir,
             this.Column1,
             this.Column2,
             this.Column3});
-            this.table.Location = new System.Drawing.Point(364, 31);
+            this.table.Location = new System.Drawing.Point(360, 31);
             this.table.Name = "table";
-            this.table.Size = new System.Drawing.Size(448, 296);
+            this.table.Size = new System.Drawing.Size(562, 330);
             this.table.TabIndex = 30;
+            this.table.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.table_CellContentClick);
+            // 
+            // ColumnN
+            // 
+            this.ColumnN.HeaderText = "#";
+            this.ColumnN.Name = "ColumnN";
+            this.ColumnN.ReadOnly = true;
             // 
             // redDir
             // 
@@ -365,18 +361,11 @@
             // 
             this.initMascOct1Box.FormattingEnabled = true;
             this.initMascOct1Box.Items.AddRange(new object[] {
-            "128",
-            "192",
-            "224",
-            "240",
-            "248",
-            "252",
-            "254",
             "255"});
             this.initMascOct1Box.Location = new System.Drawing.Point(65, 157);
             this.initMascOct1Box.Name = "initMascOct1Box";
             this.initMascOct1Box.Size = new System.Drawing.Size(55, 21);
-            this.initMascOct1Box.TabIndex = 41;
+            this.initMascOct1Box.TabIndex = 6;
             this.initMascOct1Box.SelectedIndexChanged += new System.EventHandler(this.initMascOct1Box_SelectedIndexChanged);
             // 
             // initMascOct4Box
@@ -386,7 +375,7 @@
             this.initMascOct4Box.Location = new System.Drawing.Point(289, 155);
             this.initMascOct4Box.Name = "initMascOct4Box";
             this.initMascOct4Box.Size = new System.Drawing.Size(55, 21);
-            this.initMascOct4Box.TabIndex = 42;
+            this.initMascOct4Box.TabIndex = 9;
             // 
             // initMascOct3Box
             // 
@@ -395,7 +384,7 @@
             this.initMascOct3Box.Location = new System.Drawing.Point(217, 155);
             this.initMascOct3Box.Name = "initMascOct3Box";
             this.initMascOct3Box.Size = new System.Drawing.Size(55, 21);
-            this.initMascOct3Box.TabIndex = 43;
+            this.initMascOct3Box.TabIndex = 8;
             this.initMascOct3Box.SelectedIndexChanged += new System.EventHandler(this.initMascOct3Box_SelectedIndexChanged);
             // 
             // initMascOct2Box
@@ -405,23 +394,22 @@
             this.initMascOct2Box.Location = new System.Drawing.Point(140, 155);
             this.initMascOct2Box.Name = "initMascOct2Box";
             this.initMascOct2Box.Size = new System.Drawing.Size(55, 21);
-            this.initMascOct2Box.TabIndex = 44;
+            this.initMascOct2Box.TabIndex = 7;
             this.initMascOct2Box.SelectedIndexChanged += new System.EventHandler(this.initMascOct2Box_SelectedIndexChanged);
             // 
             // maskLabel
             // 
             this.maskLabel.AutoSize = true;
-            this.maskLabel.Location = new System.Drawing.Point(12, 243);
+            this.maskLabel.Location = new System.Drawing.Point(6, 29);
             this.maskLabel.Name = "maskLabel";
             this.maskLabel.Size = new System.Drawing.Size(100, 13);
             this.maskLabel.TabIndex = 45;
             this.maskLabel.Text = "Mascara de Subred";
-            this.maskLabel.Click += new System.EventHandler(this.label9_Click);
             // 
             // octDecimalLabel
             // 
             this.octDecimalLabel.AutoSize = true;
-            this.octDecimalLabel.Location = new System.Drawing.Point(12, 268);
+            this.octDecimalLabel.Location = new System.Drawing.Point(6, 62);
             this.octDecimalLabel.Name = "octDecimalLabel";
             this.octDecimalLabel.Size = new System.Drawing.Size(86, 13);
             this.octDecimalLabel.TabIndex = 46;
@@ -430,7 +418,7 @@
             // octBinarioLabel
             // 
             this.octBinarioLabel.AutoSize = true;
-            this.octBinarioLabel.Location = new System.Drawing.Point(12, 294);
+            this.octBinarioLabel.Location = new System.Drawing.Point(6, 94);
             this.octBinarioLabel.Name = "octBinarioLabel";
             this.octBinarioLabel.Size = new System.Drawing.Size(80, 13);
             this.octBinarioLabel.TabIndex = 47;
@@ -439,7 +427,7 @@
             // prestadosLabel
             // 
             this.prestadosLabel.AutoSize = true;
-            this.prestadosLabel.Location = new System.Drawing.Point(230, 243);
+            this.prestadosLabel.Location = new System.Drawing.Point(226, 29);
             this.prestadosLabel.Name = "prestadosLabel";
             this.prestadosLabel.Size = new System.Drawing.Size(79, 13);
             this.prestadosLabel.TabIndex = 48;
@@ -456,7 +444,7 @@
             // afectadoLabel
             // 
             this.afectadoLabel.AutoSize = true;
-            this.afectadoLabel.Location = new System.Drawing.Point(230, 268);
+            this.afectadoLabel.Location = new System.Drawing.Point(226, 62);
             this.afectadoLabel.Name = "afectadoLabel";
             this.afectadoLabel.Size = new System.Drawing.Size(41, 13);
             this.afectadoLabel.TabIndex = 50;
@@ -465,24 +453,35 @@
             // iterationsLabel
             // 
             this.iterationsLabel.AutoSize = true;
-            this.iterationsLabel.Location = new System.Drawing.Point(230, 294);
+            this.iterationsLabel.Location = new System.Drawing.Point(226, 94);
             this.iterationsLabel.Name = "iterationsLabel";
             this.iterationsLabel.Size = new System.Drawing.Size(41, 13);
             this.iterationsLabel.TabIndex = 51;
             this.iterationsLabel.Text = "label10";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.maskLabel);
+            this.groupBox2.Controls.Add(this.iterationsLabel);
+            this.groupBox2.Controls.Add(this.octDecimalLabel);
+            this.groupBox2.Controls.Add(this.afectadoLabel);
+            this.groupBox2.Controls.Add(this.octBinarioLabel);
+            this.groupBox2.Controls.Add(this.prestadosLabel);
+            this.groupBox2.Location = new System.Drawing.Point(12, 239);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(342, 122);
+            this.groupBox2.TabIndex = 52;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Datos";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 339);
-            this.Controls.Add(this.iterationsLabel);
-            this.Controls.Add(this.afectadoLabel);
+            this.ClientSize = new System.Drawing.Size(934, 373);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.prestadosLabel);
-            this.Controls.Add(this.octBinarioLabel);
-            this.Controls.Add(this.octDecimalLabel);
-            this.Controls.Add(this.maskLabel);
             this.Controls.Add(this.initMascOct2Box);
             this.Controls.Add(this.initMascOct3Box);
             this.Controls.Add(this.initMascOct4Box);
@@ -509,7 +508,6 @@
             this.Controls.Add(this.slashBox);
             this.Name = "Form1";
             this.Text = "Calculadora Subneteo";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.requiredNumberInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oct1Input)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oct4Input)).EndInit();
@@ -518,6 +516,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,10 +551,6 @@
         private System.Windows.Forms.ComboBox initMascOct4Box;
         private System.Windows.Forms.ComboBox initMascOct3Box;
         private System.Windows.Forms.ComboBox initMascOct2Box;
-        private System.Windows.Forms.DataGridViewTextBoxColumn redDir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Label maskLabel;
         private System.Windows.Forms.Label octDecimalLabel;
         private System.Windows.Forms.Label octBinarioLabel;
@@ -562,6 +558,12 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label afectadoLabel;
         private System.Windows.Forms.Label iterationsLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn redDir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 
