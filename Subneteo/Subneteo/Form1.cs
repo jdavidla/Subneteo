@@ -517,16 +517,12 @@ namespace Subneteo
                 noCheck = false;
             }
                 
-         
-                
                 oct1 = Int32.Parse(oct1Input.Value.ToString());
                 oct2 = Int32.Parse(oct2Input.Value.ToString());
                 oct3 = Int32.Parse(this.oct3Input.Value.ToString());
                 oct4 = Int32.Parse(this.oct4Input.Value.ToString());
                 requiredNumber = Int32.Parse(this.requiredNumberInput.Value.ToString());
                 
-
-
                 if (radioSlash.Checked)
             {
                 try
